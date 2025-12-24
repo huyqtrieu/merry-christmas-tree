@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Merry Christmas Tree</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #02040a;
+        font-family: 'Nunito', sans-serif;
+      }
+      h1, h2, h3, .font-cute {
+        font-family: 'Fredoka', sans-serif;
+      }
+      #root {
+        height: 100vh;
+        width: 100vw;
+      }
+      canvas {
+        display: block;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      }
+      .btn-pill {
+        border-radius: 9999px;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-pill:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      }
+      .btn-pill:active {
+        transform: translateY(0px) scale(0.96);
+      }
+      .kawaii-gradient {
+        background: linear-gradient(135deg, #fb7185 0%, #fcd34d 100%);
+        box-shadow: 0 0 20px rgba(251, 113, 133, 0.3);
+      }
+      .kawaii-gradient:hover {
+        box-shadow: 0 0 30px rgba(251, 113, 133, 0.5);
+      }
+      @keyframes soft-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      .animate-soft-float {
+        animation: soft-float 4s ease-in-out infinite;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "three": "https://esm.sh/three@^0.182.0",
+    "three/": "https://esm.sh/three@^0.182.0/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
