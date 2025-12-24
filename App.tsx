@@ -46,7 +46,7 @@ const App: React.FC = () => {
       setAsciiTextures(prev => [...prev, ...textures]);
       
       // Success message as requested
-      setCelebrationMsg("Ditmecongsan");
+      setCelebrationMsg("Merry Christmas");
       if (sceneRef.current) {
         for (let i = 0; i < 6; i++) {
           setTimeout(() => sceneRef.current?.launchFirework(), i * 400);
@@ -86,17 +86,18 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-full bg-[#1a1a4a] overflow-hidden select-none">
+    <div className="relative w-full h-full bg-[#1a1a40] overflow-hidden select-none">
       {/* Background Atmosphere */}
       <div className="absolute inset-0 z-0 pointer-events-none" 
-           style={{ background: 'linear-gradient(to top, #4db6ac 0%, #7e57c2 40%, #1a1a4a 100%)' }} />
+           style={{ background: 'linear-gradient(to top, #2a2a5e 0%, #3e2a67 40%, #1a1a40 100%)' }} />
       
       {/* 3D Scene - Moved to absolute with z-10 */}
       <div className="absolute inset-0 z-10">
         <Scene 
           ref={sceneRef}
           treeState={treeState} 
-          asciiTextures={asciiTextures} 
+          asciiTextures={asciiTextures}
+          snowmanFaceTexture={asciiTextures[0] || null}
         />
       </div>
 

@@ -14,8 +14,9 @@ const UIOverlay: React.FC<UIOverlayProps> = ({
   celebrationMessage
 }) => {
   const [showMsg, setShowMsg] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
     if (celebrationMessage) {
@@ -27,13 +28,32 @@ const UIOverlay: React.FC<UIOverlayProps> = ({
 
   useEffect(() => {
     // Festive high-energy track
-    const audio = new Audio('https://www.chosic.com/wp-content/uploads/2021/11/We-Wish-You-a-Merry-Christmas.mp3');
+    const audio = new Audio('https://www.youtube.com/watch?v=3CWJNqyub3o');
     audio.loop = true;
+    audio.volume = 0.5;
     audioRef.current = audio;
+    
+    // Auto-play on first user interaction
+    const playAudio = () => {
+      if (!hasInteracted && audioRef.current && isMuted === false) {
+        audioRef.current.play().catch(e => console.log('Waiting for interaction'));
+        setHasInteracted(true);
+      }
+    };
+    
+    // Try to play immediately
+    playAudio();
+    
+    // Or wait for any user interaction
+    window.addEventListener('click', playAudio);
+    window.addEventListener('keydown', playAudio);
+    
     return () => {
       audio.pause();
+      window.removeEventListener('click', playAudio);
+      window.removeEventListener('keydown', playAudio);
     };
-  }, []);
+  }, [hasInteracted, isMuted]);
 
   const toggleSound = () => {
     if (!audioRef.current) return;
